@@ -60,15 +60,14 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
 	{ 
     	return nullptr;
     }
-	std::vector<Move> moves;
 	for (int i = 0; i < 8; i++) 
 	{
         for (int j = 0; j < 8; j++) 
         {
-            Move move(i, j);
-            if (board->checkMove(&move, side))
-            	moves.push_back(move);
+            Move *move = new Move(i, j);
+            if (board->checkMove(move, side))
+            	return move;
         }
     }
-    return &moves[0];
+    return nullptr;
 }
