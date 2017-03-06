@@ -12,6 +12,7 @@ class Player {
 private:
 	Board * board;
 	Side side;
+	int heuristic[8];
 
 public:
     Player(Side s);

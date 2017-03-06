@@ -16,8 +16,7 @@ Player::Player(Side s) {
     testingMinimax = false;
     side = s;
     board = new Board();
-
-
+				 
     /*
      * TODO: Do any initialization you need to do here (setting up the board,
      * precalculating things, etc.) However, remember that you will only have
@@ -50,6 +49,15 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * process the opponent's opponents move before calculating your own move
      */
 
+	int heuristic[8][8] = {{10000, -3000, 1000, 800, 800, 1000, -3000, 10000},
+							 {-3000, -5000, -450, -500, -500, -450, -5000, -3000},
+							 {1000, -450, 30, 10, 10, 30, -450, 1000},
+							 {800, -500, 10, 50, 50, 10, -500, 800},
+							 {800, -500, 10, 50, 50, 10, -500, 800}, 
+							 {1000, -450, 30, 10, 10, 30, -450, 1000},
+							 {-3000, -5000, -450, -500, -500, -450, -5000, -3000},
+							 {10000, -3000, 1000, 800, 800, 1000, -3000, 10000}};
+
      if (side == BLACK)
      {
      	board->doMove(opponentsMove, WHITE);
@@ -59,23 +67,26 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      	board->doMove(opponentsMove, BLACK);
      }
 
-
 	if (board->isDone())   
 	{ 
     	return nullptr;
     }
+    
+    int bestn = -5001;
+    Move *best;
 	for (int i = 0; i < 8; i++) 
 	{
         for (int j = 0; j < 8; j++) 
         {
             Move *move = new Move(i, j);
-            if (board->checkMove(move, side))
+            if ((board->checkMove(move, side)) && (heuristic[i][j] > bestn))
             {
-            	board->doMove(move, side);
-            	return move;
+            	bestn = heuristic[i][j];
+            	best = move;
         	}
         }
 
     }
-    return nullptr;
+    board->doMove(best, side);
+    return best;
 }
