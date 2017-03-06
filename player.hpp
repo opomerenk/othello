@@ -4,12 +4,17 @@
 #include <iostream>
 #include "common.hpp"
 #include "board.hpp"
+#include <vector>
 using namespace std;
 
 class Player {
 
+private:
+	Board * board;
+	Side side;
+
 public:
-    Player(Side side);
+    Player(Side s);
     ~Player();
 
     Move *doMove(Move *opponentsMove, int msLeft);

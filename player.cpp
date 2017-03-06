@@ -1,5 +1,6 @@
 //poop
 #include "player.hpp"
+#include <iostream>
 
 //opomerenk making small change
 
@@ -10,9 +11,11 @@
  * on (BLACK or WHITE) is passed in as "side". The constructor must finish
  * within 30 seconds.
  */
-Player::Player(Side side) {
+Player::Player(Side s) {
     // Will be set to true in test_minimax.cpp.
     testingMinimax = false;
+    side = s;
+
 
     /*
      * TODO: Do any initialization you need to do here (setting up the board,
@@ -45,5 +48,19 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * TODO: Implement how moves your AI should play here. You should first
      * process the opponent's opponents move before calculating your own move
      */
-    return nullptr;
+	if (board->isDone())   
+	{ 
+    	return nullptr;
+    }
+	std::vector<Move> moves;
+	for (int i = 0; i < 8; i++) 
+	{
+        for (int j = 0; j < 8; j++) 
+        {
+            Move move(i, j);
+            if (board->checkMove(&move, side))
+            	moves.push_back(move);
+        }
+    }
+    return &moves[0];
 }
