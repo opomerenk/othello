@@ -51,9 +51,13 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      */
 
      if (side == BLACK)
+     {
      	board->doMove(opponentsMove, WHITE);
+     }
      else
+     {
      	board->doMove(opponentsMove, BLACK);
+     }
 
 
 	if (board->isDone())   
@@ -66,8 +70,12 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
         {
             Move *move = new Move(i, j);
             if (board->checkMove(move, side))
+            {
+            	board->doMove(move, side);
             	return move;
+        	}
         }
+
     }
     return nullptr;
 }
