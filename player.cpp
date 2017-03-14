@@ -49,14 +49,14 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      * process the opponent's opponents move before calculating your own move
      */
 
-	int heuristic[8][8] = {{10000, -3000, 1000, 800, 800, 1000, -3000, 10000},
-							 {-3000, -5000, -450, -500, -500, -450, -5000, -3000},
+	int heuristic[8][8] = {{10000, -3500, 1000, 800, 800, 1000, -3500, 10000},
+							 {-3500, -5000, -450, -500, -500, -450, -5000, -3500},
 							 {1000, -450, 30, 10, 10, 30, -450, 1000},
-							 {800, -500, 10, 50, 50, 10, -500, 800},
-							 {800, -500, 10, 50, 50, 10, -500, 800}, 
+							 {800, -500, 10, 100, 100, 10, -500, 800},
+							 {800, -500, 10, 100, 100, 10, -500, 800}, 
 							 {1000, -450, 30, 10, 10, 30, -450, 1000},
-							 {-3000, -5000, -450, -500, -500, -450, -5000, -3000},
-							 {10000, -3000, 1000, 800, 800, 1000, -3000, 10000}};
+							 {-3500, -5000, -450, -500, -500, -450, -5000, -3500},
+							 {10000, -3500, 1000, 800, 800, 1000, -3500, 10000}};
 
      if (side == BLACK)
      {
@@ -72,14 +72,14 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
     	return nullptr;
     }
     
-    int bestn = -5001;
+    int bestn = -5000;
     Move *best;
 	for (int i = 0; i < 8; i++) 
 	{
         for (int j = 0; j < 8; j++) 
         {
             Move *move = new Move(i, j);
-            if ((board->checkMove(move, side)) && (heuristic[i][j] > bestn))
+            if ((board->checkMove(move, side)) && (heuristic[i][j] >= bestn))
             {
             	bestn = heuristic[i][j];
             	best = move;

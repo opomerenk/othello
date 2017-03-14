@@ -12,6 +12,10 @@ We came up with the numbers to use in our heuristic to try to maximize the
 effectiveness of our AI. Rather than just making all the central squares the
 same value, we made them slightly different from each other to make
 the heuristic slightly better. 
+
+We altered the heuristic slightly in part 2 of the assignment in an
+effort to make it more effective.
+
 We thought about potentially going further and making a Monty 
 solution to the problem, but realized that would be too computationally
 intensive and so we dropped the idea.
