@@ -14,7 +14,8 @@ same value, we made them slightly different from each other to make
 the heuristic slightly better. 
 
 We altered the heuristic slightly in part 2 of the assignment in an
-effort to make it more effective.
+effort to make it more effective. We also fixed a seg fault that was
+causing our old AI problems at the end of the games.
 
 We thought about potentially going further and making a Monty 
 solution to the problem, but realized that would be too computationally

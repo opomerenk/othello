@@ -67,13 +67,9 @@ Move *Player::doMove(Move *opponentsMove, int msLeft) {
      	board->doMove(opponentsMove, BLACK);
      }
 
-	if (board->isDone())   
-	{ 
-    	return nullptr;
-    }
     
     int bestn = -5000;
-    Move *best;
+    Move *best = nullptr;
 	for (int i = 0; i < 8; i++) 
 	{
         for (int j = 0; j < 8; j++) 
